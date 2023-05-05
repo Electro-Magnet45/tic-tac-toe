@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  outline: none;
+}
+
+.container {
+  display: flex;
+  height: 97vh;
+  width: 98.5vw;
+  padding: 0.5rem;
+}
+
+.container > div {
+  flex: 1;
+}
+
+.form-container {
+  border: 0.15rem black solid;
+  border-radius: 1.5rem;
+  margin: 0 1px 0 1px;
+  color: white;
+}
+
+.signup-container {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  height: 100%;
+}
+
+.signup-container div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-container {
+  height: 100%;
+  transition: transform 0.6s ease-in-out;
+  background: linear-gradient(to right, hsl(115, 95%, 40%), hsl(115, 97%, 48%));
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+h1 {
+  font-weight: bold;
+  margin: 1rem;
+}
+
+input {
+  background-color: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  border-radius: 1rem;
+  font-size: 1rem;
+  width: 70%;
+}
+
+button {
+  border-radius: 2rem;
+  color: black;
+  font-weight: bold;
+  width: 8rem;
+  padding: 12px 0;
+  margin-top: 16px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+/* button:hover {
+  background-color: #ff4b2b;
+  color: white;
+}
+ */
+#signup-button:hover {
+  color: lawngreen;
+  background-color: white;
+}
+
+#login-button:hover {
+  color: #ff416c;
+  background-color: white;
+  scale: 1.5;
+}

@@ -1,0 +1,86 @@
+body {
+  background-color: lightskyblue;
+}
+.game {
+  margin: 50px auto;
+  width: 300px;
+  text-align: center;
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.cell {
+  flex: 1 0 33.33333%;
+  height: 80px;
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.cell:nth-child(1) {
+  border-right: 2px black solid;
+  border-bottom: 2px black solid;
+}
+.cell:nth-child(2) {
+  border-bottom: 2px black solid;
+}
+.cell:nth-child(3) {
+  border-left: 2px black solid;
+  border-bottom: 2px black solid;
+}
+.cell:nth-child(5) {
+  border-bottom: 2px black solid;
+  border-right: 2px black solid;
+  border-left: 2px black solid;
+}
+.cell:nth-child(6) {
+  border-bottom: 2px black solid;
+}
+.cell:nth-child(7) {
+  border-top: 2px black solid;
+  border-right: 2px black solid;
+}
+.cell:nth-child(8) {
+  border-right: 2px black solid;
+}
+
+.cell:hover {
+  background-color: black;
+}
+
+.status {
+  margin: 20px 0;
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+}
+
+.reset {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reset:hover {
+  background-color: #444;
+}
+
+.user-turn {
+  background-color: #ff2400;
+}

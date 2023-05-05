@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Game</title>
+    <link rel="stylesheet" href="tictactoe.css" />
+  </head>
+  <body>
+    <div class="game">
+      <div class="board">
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+      </div>
+      <div class="status">Next player: X</div>
+      <button class="reset">Reset</button>
+    </div>
+    <script
+      src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+      integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const socket = io("http://localhost:5000");
+
+      let board = Array(9).fill(null);
+      let player = "X";
+      let status = "Next player: X";
+
+      const handleCellClick = (index) => {
+        if (board[index] !== null) {
+          return;
+        }
+
+        socket.emit("cellClicked", index);
+      };
+
+      const handleResetClick = () => {
+        socket.emit("resetClicked");
+      };
+
+      const render = () => {
+        const boardContainer = document.querySelector(".board");
+        boardContainer.innerHTML = "";
+        for (let i = 0; i < 9; i++) {
+          const button = document.createElement("button");
+          button.className = "cell";
+          button.textContent = board[i];
+          button.addEventListener("click", () => handleCellClick(i));
+          boardContainer.appendChild(button);
+        }
+
+        const statusElement = document.querySelector(".status");
+        statusElement.textContent = status;
+
+        const resetButton = document.querySelector(".reset");
+        resetButton.addEventListener("click", handleResetClick);
+        resetButton.disabled = false;
+
+        if (player === "X") {
+          document.body.classList.add("user-turn");
+        } else {
+          document.body.classList.remove("user-turn");
+        }
+      };
+
+      socket.on("boardUpdated", (data) => {
+        board = data.board;
+        player = data.player;
+        status = data.status;
+        render();
+      });
+
+      socket.on("resetBoard", () => {
+        board = Array(9).fill(null);
+        player = "X";
+        status = "Next player: X";
+        render();
+      });
+
+      socket.on("gameOver", (winner) => {
+        if (winner) {
+          status = `Winner: ${winner}`;
+        } else {
+          status = "It's a tie!";
+        }
+        const resetButton = document.querySelector(".reset");
+        resetButton.disabled = false;
+        render();
+      });
+      render();
+    </script>
+  </body>
+</html>
