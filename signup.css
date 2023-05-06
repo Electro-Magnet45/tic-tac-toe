@@ -1,6 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap");
+
 * {
   margin: 0;
   outline: none;
+  font-family: "Bruno Ace SC", cursive;
 }
 
 .container {
@@ -24,6 +27,9 @@
 .signup-container {
   background: linear-gradient(to right, #ff416c, #ff4b2b);
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .signup-container div {
@@ -45,7 +51,7 @@
 
 h1 {
   font-weight: bold;
-  margin: 1rem;
+  margin: 2rem;
 }
 
 input {
